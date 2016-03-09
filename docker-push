@@ -22,13 +22,13 @@ if [ -z "$NAMESPACE" ]; then
     NAMESPACE=$(node -e "var dg=require('./package.json')['docker-namespace']; console.log(dg? dg + '/' : '') ")
 fi
 
-NAME="$NAMESPACE$NAME"
+NAMESPACE_NAME="$NAMESPACE$NAME"
 
 echo "$VERSION"
 
-docker tag "$NAME:$VERSION" "$PREFIX/$NAME"
-docker push "$PREFIX/$NAME"
-docker tag "$NAME:$VERSION" "$PREFIX/$NAME:$VERSION"
-docker push "$PREFIX/$NAME:$VERSION"
-docker tag -f "$NAME:$VERSION" "$PREFIX/$NAME:latest"
-docker push "$PREFIX/$NAME:latest"
+docker tag "$NAMESPACE_NAME:$VERSION" "$PREFIX/$NAMESPACE_NAME"
+docker push "$PREFIX/$NAMESPACE_NAME"
+docker tag "$NAMESPACE_NAME:$VERSION" "$PREFIX/$NAMESPACE_NAME:$VERSION"
+docker push "$PREFIX/$NAMESPACE_NAME:$VERSION"
+docker tag -f "$NAMESPACE_NAME:$VERSION" "$PREFIX/$NAMESPACE_NAME:latest"
+docker push "$PREFIX/$NAMESPACE_NAME:latest"

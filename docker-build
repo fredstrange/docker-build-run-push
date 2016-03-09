@@ -12,8 +12,8 @@ if [ -z "$NAMESPACE" ]; then
     NAMESPACE=$(node -e "var dg=require('./package.json')['docker-namespace']; console.log(dg? dg + '/' : '') ")
 fi
 
-NAME="$NAMESPACE$NAME"
+NAMESPACE_NAME="$NAMESPACE$NAME"
 
 echo "$VERSION"
 
-docker build -t "$NAME:$VERSION" "$@" .
+docker build -t "$NAMESPACE_NAME:$VERSION" "$@" .
