@@ -18,6 +18,12 @@ if [ -z "$PREFIX" ]; then
     exit 1
 fi
 
+if [ -z "$NAMESPACE" ]; then
+    NAMESPACE=$(node -e "var dg=require('./package.json')['docker-namespace']; console.log(dg? dg + '/' || '') ")
+fi
+
+NAME="$NAMESPACE$NAME"
+
 echo "$VERSION"
 
 docker tag "$NAME:$VERSION" "$PREFIX/$NAME"

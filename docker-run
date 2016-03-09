@@ -8,6 +8,12 @@ if [ -z "$NAME" ]; then
     NAME=$(node -e "console.log(require('./package.json').name.split('/').pop())")
 fi
 
+if [ -z "$NAMESPACE" ]; then
+    NAMESPACE=$(node -e "var dg=require('./package.json')['docker-namespace']; console.log(dg? dg + '/' || '') ")
+fi
+
+NAME="$NAMESPACE$NAME"
+
 
 if [ "$#" -ne 0 ]; then
 	PRE=$(echo "$@" | cut -d "+" -f 1)
