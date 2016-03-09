@@ -19,7 +19,7 @@ if [ -z "$PREFIX" ]; then
 fi
 
 if [ -z "$NAMESPACE" ]; then
-    NAMESPACE=$(node -e "var dg=require('./package.json')['docker-namespace']; console.log(dg? dg + '/' || '') ")
+    NAMESPACE=$(node -e "var dg=require('./package.json')['docker-namespace']; console.log(dg? dg + '/' : '') ")
 fi
 
 NAME="$NAMESPACE$NAME"
